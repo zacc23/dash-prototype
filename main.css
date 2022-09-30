@@ -117,7 +117,7 @@ tr:nth-child(odd) {
 #tireTemps {
     position: fixed;
     bottom: 35px;
-    left: 200px;
+    left: 160px;
     float: left;
     text-align: right;
     font-family: 'tahoma';
@@ -139,10 +139,10 @@ tr:nth-child(odd) {
 #showTire {
     position: fixed;
     bottom: 90px;
-    left: 270px;
-    height: 160px;
-    width: 30px;
-    background: linear-gradient(to right, 
+    left: 130px;
+    height: 30px;
+    width: 160px;
+    background: linear-gradient(to bottom, 
 	yellow 20%, 
 	gold 20%, 
 	gold 40%, 
