@@ -8,7 +8,10 @@ function createWindow() {
     win = new BrowserWindow({ 
         width: 800, 
         height: 480, 
-     });
+    }) 
+    // UNCOMMENT THIS IF RUNNING ON YOUR OWN MACHINE
+    // IN WINDOWED MODE FOR ACCURATE RESOLUTION
+    //win.setMenu(null);
      
     // set full screen (matters for the pi)
     // COMMENT THIS OUT IF RUNNING ON YOUR OWN MACHINE
