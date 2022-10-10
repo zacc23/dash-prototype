@@ -7,8 +7,46 @@ let rpmBar = new ProgressBar.Path(rpmPath, {
   easing: 'easeInOut',
   duration: 50,
 });
-
 rpmBar.set(1);
+
+// Initialize Tire Temperature ProgressBar
+let tireBar = new ProgressBar.Path(#tire, {
+	position: fixed;
+	bottom: 90px;
+	left: 130px;
+	height: 30px;
+	width: 160px;
+	/*
+	background: linear-gradient(to bottom,
+			yellow 20%,
+			gold 20%,
+			gold 40%,
+			red 40%,
+			red 60%,
+			orange 60%);
+	*/
+	// ***TODO: make the bar permanently filled
+	// divide the bar into sections?***
+	padding: 10px 20px;
+	border-radius: 40px;
+	// green -> yellow -> orange -> red
+	step: (state, socBar) => {
+    if (tireBar.value() < 0.2) {
+      tireBar.path.setAttribute('stroke', 'green');
+    } 
+		else if (tireBar.value() < 0.4) {
+      tireBar.path.setAttribute('stroke', 'yellow');
+    }
+		else if (tireBar.value() < 0.6) {
+			tireBar.path.setAttribute('stroke', 'orange');
+		}
+		else {
+			tireBar.path.setAttribute('stroke', 'red');
+		}
+    // display nearest tenth of a percent
+    tire.setText((100.0 * tire.value()).toFixed(1).toString());
+  }
+}};
 
 // Initialize SOC ProgressBar
 let socBar = new ProgressBar.Line("#soc", {
