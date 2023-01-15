@@ -1,52 +1,49 @@
 const { remote } = require('electron');
 const shell = require('shelljs');
 const { Menu } = remote;
+const tireSens = 4;
 
 // Initialize RPM ProgressBar
 let rpmBar = new ProgressBar.Path(rpmPath, {
   easing: 'easeInOut',
   duration: 50,
 });
+
 rpmBar.set(1);
 
-// Initialize Tire Temperature ProgressBar
-let tireBar = new ProgressBar.Path(#tire, {
-	position: fixed;
-	bottom: 90px;
-	left: 130px;
-	height: 30px;
-	width: 160px;
-	/*
-	background: linear-gradient(to bottom,
-			yellow 20%,
-			gold 20%,
-			gold 40%,
-			red 40%,
-			red 60%,
-			orange 60%);
-	*/
-	// ***TODO: make the bar permanently filled
-	// divide the bar into sections?***
-	padding: 10px 20px;
-	border-radius: 40px;
-	// green -> yellow -> orange -> red
-	step: (state, socBar) => {
-    if (tireBar.value() < 0.2) {
-      tireBar.path.setAttribute('stroke', 'green');
-    } 
-		else if (tireBar.value() < 0.4) {
-      tireBar.path.setAttribute('stroke', 'yellow');
+// TODO: create array of tire bars to create tire depending on # of sensors
+var tireBar = [];
+
+for (i = 0; i < tireSens; i++) {
+  // Initialize Tire Temperature ProgressBar
+  thisBar = tireBar[i];
+  thisBar = new ProgressBar.Line("#tire", {
+    // green -> yellow -> orange -> red
+    strokeWidth: 24,
+    easing: 'easeInOut',
+    duration: 1000,
+    color: '#3c643c',
+    trail: 'none',
+    svgStyle: {width: '80%', height: '100%'},
+    step: (state, thisBar) => {
+      if (thisBar.value() < 0.2) {
+        thisBar.path.setAttribute('stroke', 'green');
+      }
+      else if (thisBar.value() < 0.4) {
+        thisBar.path.setAttribute('stroke', 'yellow');
+      } 
+      else if (thisBar.value() < 0.6) {
+        thisBar.path.setAttribute('stroke', 'orange');
+      } 
+      else {
+        thisBar.path.setAttribute('stroke', 'red');
+      }
+      // display nearest tenth of a percent
+      //thisBar.setText((100.0 * thisBar.value()).toFixed(1).toString());
     }
-		else if (tireBar.value() < 0.6) {
-			tireBar.path.setAttribute('stroke', 'orange');
-		}
-		else {
-			tireBar.path.setAttribute('stroke', 'red');
-		}
-    // display nearest tenth of a percent
-    tire.setText((100.0 * tire.value()).toFixed(1).toString());
-  }
-}};
+  });
+  thisBar.animate(1.0);
+}
 
 // Initialize SOC ProgressBar
 let socBar = new ProgressBar.Line("#soc", {
