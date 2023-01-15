@@ -3,6 +3,7 @@ function write_data() {
     // update other things less often
     if (counter > 50) {
       curr_soc -= 1.1;
+      //curr_tire -= 1.1;
       curr_mctemp += 0.01;
       curr_motortemp += 1.0;
       curr_maxcelltemp += 0.01;
@@ -21,6 +22,7 @@ function write_data() {
       maxCellTemp.textContent = curr_maxcelltemp.toString().substring(0, 6);
       minCellTemp.textContent = curr_mincelltemp.toString().substring(0, 6);
       socBar.set(curr_soc / 100.0);
+      //tireBar.set(curr_tire / 100.0);
   
       // Set debug elements
       debugsoc.textContent = curr_soc.toString().substring(0, 4);
