@@ -26,6 +26,7 @@ for (i = 0; i < tireSens; i++) {
     trail: 'none',
     svgStyle: {width: '80%', height: '100%'},
     step: (state, thisBar) => {
+    // TODO: directly reference color and don't change value
       if (thisBar.value() < 0.2) {
         thisBar.path.setAttribute('stroke', 'green');
       }
@@ -38,11 +39,11 @@ for (i = 0; i < tireSens; i++) {
       else {
         thisBar.path.setAttribute('stroke', 'red');
       }
-      // display nearest tenth of a percent
-      //thisBar.setText((100.0 * thisBar.value()).toFixed(1).toString());
+      // display temperature
+      thisBar.setText((100.0 * thisBar.value()).toFixed(1).toString());
     }
   });
-  thisBar.animate(1.0);
+  thisBar.set(1.0);
 }
 
 // Initialize SOC ProgressBar
