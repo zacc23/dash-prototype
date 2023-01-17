@@ -12,12 +12,13 @@ let rpmBar = new ProgressBar.Path(rpmPath, {
 rpmBar.set(1);
 
 // TODO: create array of tire bars to create tire depending on # of sensors
-var tireBar = [];
+var frontTire = [];
+var backTire = [];
 
 for (i = 0; i < tireSens; i++) {
-  // Initialize Tire Temperature ProgressBar
-  thisBar = tireBar[i];
-  thisBar = new ProgressBar.Line("#tire", {
+  // Initialize Front Tire Temperature ProgressBars
+  thisBar = frontTire[i];
+  thisBar = new ProgressBar.Line("#frontTire", {
     // green -> yellow -> orange -> red
     strokeWidth: 24,
     svgStyle: {width: '80%', height: '100%'},
@@ -32,6 +33,34 @@ for (i = 0; i < tireSens; i++) {
       else if (thisBar.value() < 0.6) {
         thisBar.path.setAttribute('stroke', 'orange');
       } 
+      else {
+        thisBar.path.setAttribute('stroke', 'red');
+      }
+      // display temperature
+      thisBar.setText((100.0 * thisBar.value()).toFixed(1).toString());
+    }
+  });
+  thisBar.set(1.0);
+}
+
+for (i = 0; i < tireSens; i++) {
+  // Initialize Back Tire Temperature ProgressBars
+  thisBar = frontTire[i];
+  thisBar = new ProgressBar.Line("#backTire", {
+    // green -> yellow -> orange -> red
+    strokeWidth: 24,
+    svgStyle: {width: '80%', height: '100%'},
+    step: (state, thisBar) => {
+    // TODO: directly reference color and don't change value
+      if (thisBar.value() < 0.2) {
+        thisBar.path.setAttribute('stroke', 'green');
+      }
+      else if (thisBar.value() < 0.4) {
+        thisBar.path.setAttribute('stroke', 'yellow');
+      }
+      else if (thisBar.value() < 0.6) {
+        thisBar.path.setAttribute('stroke', 'orange');
+      }
       else {
         thisBar.path.setAttribute('stroke', 'red');
       }
