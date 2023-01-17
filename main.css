@@ -115,11 +115,9 @@ tr:nth-child(odd) {
 }
 
 #tire {
+    float: left
     position: fixed;
-    bottom: 90px;
-    left: 130px;
-    height: 30px;
-    width: 160px;
+    width: 160px
 }
 
 #tireBG {
@@ -130,17 +128,6 @@ tr:nth-child(odd) {
     right: 295px;
     z-index: 1;
     zoom: 89%;
-}
-
-#tireTemps {
-    position: fixed;
-    bottom: 35px;
-    left: 160px;
-    float: left;
-    text-align: right;
-    font-family: 'tahoma';
-    font-size: 12px;
-    zoom: 130%;
 }
 
 #temps {

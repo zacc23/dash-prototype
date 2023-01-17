@@ -20,10 +20,6 @@ for (i = 0; i < tireSens; i++) {
   thisBar = new ProgressBar.Line("#tire", {
     // green -> yellow -> orange -> red
     strokeWidth: 24,
-    easing: 'easeInOut',
-    duration: 1000,
-    color: '#3c643c',
-    trail: 'none',
     svgStyle: {width: '80%', height: '100%'},
     step: (state, thisBar) => {
     // TODO: directly reference color and don't change value
@@ -32,7 +28,7 @@ for (i = 0; i < tireSens; i++) {
       }
       else if (thisBar.value() < 0.4) {
         thisBar.path.setAttribute('stroke', 'yellow');
-      } 
+      }
       else if (thisBar.value() < 0.6) {
         thisBar.path.setAttribute('stroke', 'orange');
       } 

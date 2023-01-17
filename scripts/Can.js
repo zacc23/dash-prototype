@@ -140,6 +140,9 @@ function can_test() {
           socBar.set(curr_soc / 100.0);
           break;
   
+	//case tireAddr:
+	  // TODO add tire can data (NOTE: don't change bar length, just color)
+
         case mcInternalAddr:
           OBVSM_state = (msg["data"][1] << 8) + msg["data"][0];
           inverter_state = msg["data"][2];
